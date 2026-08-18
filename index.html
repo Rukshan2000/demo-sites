@@ -52,7 +52,9 @@ tailwind.config = {
     --fg: 11 18 32;      --brand-300: 13 76 134;  --brand-400: 17 96 168;  --acc-400: 2 132 199;
     --glow: 90 169 230;  --glow-a: .20; --glow2-a: .13; --grain: .02;  --grid: .05;  --map: 0;
   }
-  body{ background:rgb(var(--ink-950)); transition:background-color .35s ease; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ overflow-x:hidden; padding-right:env(safe-area-inset-right); padding-left:env(safe-area-inset-left);
+        background:rgb(var(--ink-950)); transition:background-color .35s ease; }
   html.theming, html.theming *{ transition:background-color .35s ease, border-color .35s ease, color .25s ease !important; }
   .grain:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opacity:var(--grain);
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");}
@@ -65,6 +67,15 @@ tailwind.config = {
   [data-theme="light"] iframe{ filter:grayscale(.7) contrast(1.05); opacity:.95; }
   .on-brand{ color:#fff; }
   .social:hover{ color:#fff; background:#1160A8; }
+  @media (max-width:640px){
+    a[href^="tel"], a[href^="https://wa.me"], summary{ -webkit-tap-highlight-color:transparent; }
+    details summary{ min-height:44px; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1!important;transform:none!important}
+    .animate-marquee{animation:none}
+    *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  }
   ::selection{background:#1160A8;color:#fff;}
 </style>
 </head>
@@ -73,10 +84,10 @@ tailwind.config = {
 <!-- ============ NAV ============ -->
 <header id="nav" class="fixed top-0 inset-x-0 z-50 transition-all duration-500">
   <div class="mx-auto max-w-[1400px] px-5 lg:px-10">
-    <div class="flex items-center justify-between h-20">
+    <div class="flex items-center justify-between h-16 sm:h-20 gap-3">
       <a href="#top" class="flex items-center gap-3 group">
         <img id="logoNav" src="assets/logo-white.png" alt="Salaka Senkada" width="404" height="114"
-             class="h-7 sm:h-8 w-auto transition-opacity group-hover:opacity-80">
+             class="h-6 sm:h-8 w-auto shrink-0 transition-opacity group-hover:opacity-80">
         <span class="hidden sm:block pl-3 border-l hair text-[10px] leading-none tracking-[.28em] text-white/40">SENKADA<br class="mb-1">GROUP</span>
       </a>
 
@@ -88,14 +99,14 @@ tailwind.config = {
         <a href="#faq" class="hover:text-white transition">FAQ</a>
       </nav>
 
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
         <a href="tel:+94112672085" class="hidden md:inline-flex text-[13.5px] font-medium text-white/70 hover:text-white transition">+94 11 267 2085</a>
         <button id="themeBtn" aria-label="Toggle colour theme" title="Toggle colour theme"
           class="grid place-items-center h-10 w-10 rounded-full border hair text-white/60 hover:text-white hover:bg-white/[.06] transition">
           <svg id="icoSun" class="w-[18px] h-[18px] hidden" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M2 12h2.5M19.5 12H22M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke-linecap="round"/></svg>
           <svg id="icoMoon" class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 13.2A8.5 8.5 0 1 1 10.8 3a6.8 6.8 0 0 0 10.2 10.2z"/></svg>
         </button>
-        <a href="#contact" class="inline-flex items-center gap-2 rounded-full bg-white text-ink-950 px-5 py-2.5 text-[13.5px] font-semibold hover:bg-brand-400 transition-colors">
+        <a href="#contact" class="hidden sm:inline-flex items-center gap-2 rounded-full bg-white text-ink-950 px-5 py-2.5 text-[13.5px] font-semibold hover:bg-brand-400 transition-colors">
           Get a quote
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
@@ -106,13 +117,15 @@ tailwind.config = {
     </div>
   </div>
   <div id="mobile" class="lg:hidden hidden border-t hair bg-ink-900/95 backdrop-blur-xl">
-    <div class="px-6 py-6 flex flex-col gap-4 text-[15px]">
-      <a href="#services" class="text-white/70">Services</a>
-      <a href="#work" class="text-white/70">Capabilities</a>
-      <a href="#locations" class="text-white/70">Locations</a>
-      <a href="#process" class="text-white/70">How it works</a>
-      <a href="#faq" class="text-white/70">FAQ</a>
-      <button id="themeBtnM" class="mt-2 inline-flex items-center gap-3 rounded-xl border hair px-4 py-3 text-white/70 hover:text-white transition">
+    <div class="px-5 py-5 flex flex-col gap-1 text-[15px] max-h-[75svh] overflow-y-auto">
+      <a href="#services" class="text-white/70 py-2.5">Services</a>
+      <a href="#work" class="text-white/70 py-2.5">Capabilities</a>
+      <a href="#locations" class="text-white/70 py-2.5">Locations</a>
+      <a href="#process" class="text-white/70 py-2.5">How it works</a>
+      <a href="#faq" class="text-white/70 py-2.5">FAQ</a>
+      <a href="#contact" class="mt-3 rounded-xl bg-brand-500 on-brand px-4 py-3.5 text-center font-semibold">Get a quote</a>
+      <a href="tel:+94112672085" class="rounded-xl border hair px-4 py-3.5 text-center font-semibold text-white mt-2">Call +94 11 267 2085</a>
+      <button id="themeBtnM" class="mt-2 mb-1 inline-flex items-center justify-center gap-3 rounded-xl border hair px-4 py-3.5 text-white/70 hover:text-white transition">
         <span id="icoM">🌙</span><span id="lblM">Dark mode</span>
       </button>
     </div>
@@ -120,58 +133,58 @@ tailwind.config = {
 </header>
 
 <!-- ============ HERO ============ -->
-<section id="top" class="relative min-h-[100svh] flex items-end overflow-hidden pb-16">
+<section id="top" class="relative min-h-[100svh] flex items-end overflow-hidden pb-12 sm:pb-16">
   <div class="absolute -top-40 left-1/2 -translate-x-1/2 h-[900px] w-[1200px] glow"></div>
   <div class="absolute top-1/3 -right-40 h-[600px] w-[600px] glow2"></div>
   <div class="absolute inset-0 bg-[linear-gradient(rgb(var(--fg)/var(--grid))_1px,transparent_1px),linear-gradient(90deg,rgb(var(--fg)/var(--grid))_1px,transparent_1px)] bg-[size:70px_70px] [mask-image:radial-gradient(70%_60%_at_50%_45%,#000,transparent)]"></div>
 
-  <div class="relative mx-auto max-w-[1400px] px-5 lg:px-10 w-full pt-36">
+  <div class="relative mx-auto max-w-[1400px] px-5 lg:px-10 w-full pt-32 sm:pt-36">
     <div class="animate-rise inline-flex items-center gap-2.5 rounded-full border hair bg-white/[.04] px-4 py-2 text-[12px] tracking-wide text-white/60 backdrop-blur">
       <span class="relative flex h-2 w-2"><span class="animate-ping absolute h-full w-full rounded-full bg-acc-400 opacity-70"></span><span class="relative h-2 w-2 rounded-full bg-acc-500"></span></span>
       Open 6:00 AM – 11:30 PM, every day of the year
     </div>
 
-    <h1 class="animate-rise mt-8 font-display font-extrabold tracking-[-.035em] leading-[.92] text-[13vw] sm:text-[10vw] lg:text-[7.4vw]">
+    <h1 class="animate-rise mt-8 font-display font-extrabold tracking-[-.035em] leading-[.92] text-[clamp(2.75rem,11.5vw,7rem)]">
       Everything you need.<br>
       <span class="gtext">Under one roof.</span>
     </h1>
 
-    <div class="mt-10 grid lg:grid-cols-12 gap-10 items-end">
-      <p class="lg:col-span-5 text-[17px] leading-relaxed text-white/55 max-w-xl">
+    <div class="mt-8 sm:mt-10 grid lg:grid-cols-12 gap-8 lg:gap-10 items-end">
+      <p class="lg:col-span-5 text-[15.5px] sm:text-[17px] leading-relaxed text-white/55 max-w-xl">
         Salaka Senkada is Colombo's one-stop shop for printing, design, documents and everything in between — a Senkada Group business trusted at 466 Union Place for more than a generation.
       </p>
       <div class="lg:col-span-4 lg:col-start-9 flex flex-wrap gap-3">
-        <a href="https://wa.me/94777352900" class="inline-flex items-center gap-2 rounded-full bg-brand-500 on-brand px-6 py-3.5 text-sm font-semibold hover:bg-brand-400 transition">
+        <a href="https://wa.me/94777352900" class="inline-flex flex-1 sm:flex-none justify-center items-center gap-2 rounded-full bg-brand-500 on-brand px-5 sm:px-6 py-3.5 text-[13.5px] sm:text-sm font-semibold hover:bg-brand-400 transition">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1s-.5-.2-.7.1-.8 1-1 1.2-.4.2-.7 0a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.6-2c-.2-.4 0-.5.1-.7l.5-.6.3-.5v-.5l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.4-1.1 1.2-1.1 2.8s1.2 3.2 1.3 3.5c.2.2 2.3 3.6 5.6 4.9 3.3 1.3 3.3.9 3.9.8.6 0 1.8-.7 2-1.4.3-.8.3-1.4.2-1.5l-.7-.4ZM12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Z"/></svg>
           WhatsApp 0777 352 900
         </a>
-        <a href="#services" class="inline-flex items-center gap-2 rounded-full border hair px-6 py-3.5 text-sm font-semibold text-white hover:bg-white/[.06] transition">Browse services</a>
+        <a href="#services" class="inline-flex flex-1 sm:flex-none justify-center items-center gap-2 rounded-full border hair px-5 sm:px-6 py-3.5 text-[13.5px] sm:text-sm font-semibold text-white hover:bg-white/[.06] transition">Browse services</a>
       </div>
     </div>
 
-    <div class="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/[.07] rounded-2xl overflow-hidden border hair">
-      <div class="bg-ink-950/70 backdrop-blur p-6"><div class="font-display text-4xl font-bold text-white">18h</div><div class="mt-1.5 text-[12.5px] text-white/45">Open daily, 365 days</div></div>
-      <div class="bg-ink-950/70 backdrop-blur p-6"><div class="font-display text-4xl font-bold text-white">1,300<span class="text-brand-400">+</span></div><div class="mt-1.5 text-[12.5px] text-white/45">Google reviews</div></div>
-      <div class="bg-ink-950/70 backdrop-blur p-6"><div class="font-display text-4xl font-bold text-white">20<span class="text-brand-400">+</span></div><div class="mt-1.5 text-[12.5px] text-white/45">Services in-house</div></div>
-      <div class="bg-ink-950/70 backdrop-blur p-6"><div class="font-display text-4xl font-bold text-white">5</div><div class="mt-1.5 text-[12.5px] text-white/45">Colombo outlets</div></div>
+    <div class="mt-10 sm:mt-16 grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/[.07] rounded-2xl overflow-hidden border hair">
+      <div class="bg-ink-950/70 backdrop-blur p-5 sm:p-6"><div class="font-display text-3xl sm:text-4xl font-bold text-white">18h</div><div class="mt-1.5 text-[12.5px] text-white/45">Open daily, 365 days</div></div>
+      <div class="bg-ink-950/70 backdrop-blur p-5 sm:p-6"><div class="font-display text-3xl sm:text-4xl font-bold text-white">1,300<span class="text-brand-400">+</span></div><div class="mt-1.5 text-[12.5px] text-white/45">Google reviews</div></div>
+      <div class="bg-ink-950/70 backdrop-blur p-5 sm:p-6"><div class="font-display text-3xl sm:text-4xl font-bold text-white">20<span class="text-brand-400">+</span></div><div class="mt-1.5 text-[12.5px] text-white/45">Services in-house</div></div>
+      <div class="bg-ink-950/70 backdrop-blur p-5 sm:p-6"><div class="font-display text-3xl sm:text-4xl font-bold text-white">5</div><div class="mt-1.5 text-[12.5px] text-white/45">Colombo outlets</div></div>
     </div>
   </div>
 </section>
 
 <!-- ============ MARQUEE ============ -->
 <div class="border-y hair py-5 overflow-hidden bg-ink-900/40">
-  <div class="flex w-max animate-marquee gap-12 whitespace-nowrap font-display text-[13px] tracking-[.22em] text-white/30 uppercase">
-    <span class="flex gap-12" id="mq"></span><span class="flex gap-12" id="mq2"></span>
+  <div class="flex w-max animate-marquee gap-8 sm:gap-12 whitespace-nowrap font-display text-[11px] sm:text-[13px] tracking-[.22em] text-white/30 uppercase">
+    <span class="flex gap-8 sm:gap-12" id="mq"></span><span class="flex gap-8 sm:gap-12" id="mq2"></span>
   </div>
 </div>
 
 <!-- ============ SERVICES ============ -->
-<section id="services" class="relative py-28 lg:py-40">
+<section id="services" class="relative py-16 sm:py-24 lg:py-36">
   <div class="mx-auto max-w-[1400px] px-5 lg:px-10">
     <div class="reveal grid lg:grid-cols-12 gap-8 items-end mb-16">
       <div class="lg:col-span-7">
         <div class="text-[12px] tracking-[.28em] text-brand-400 mb-5">01 — WHAT WE DO</div>
-        <h2 class="font-display font-bold tracking-[-.03em] leading-[1.02] text-[8.5vw] sm:text-5xl lg:text-6xl">
+        <h2 class="font-display font-bold tracking-[-.03em] leading-[1.02] text-[clamp(2rem,7vw,3.75rem)]">
           One counter.<br>Twenty-plus services.
         </h2>
       </div>
@@ -185,12 +198,12 @@ tailwind.config = {
 </section>
 
 <!-- ============ CAPABILITY / SPLIT ============ -->
-<section id="work" class="relative py-24 lg:py-32 border-y hair bg-ink-900/30">
+<section id="work" class="relative py-16 sm:py-20 lg:py-28 border-y hair bg-ink-900/30">
   <div class="mx-auto max-w-[1400px] px-5 lg:px-10">
-    <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
       <div class="reveal">
         <div class="text-[12px] tracking-[.28em] text-brand-400 mb-5">02 — WHY SALAKA</div>
-        <h2 class="font-display font-bold tracking-[-.03em] leading-[1.05] text-[8.5vw] sm:text-5xl lg:text-[3.4rem]">
+        <h2 class="font-display font-bold tracking-[-.03em] leading-[1.05] text-[clamp(2rem,6.5vw,3.4rem)]">
           Built for people<br>in a <span class="gtext">hurry</span>.
         </h2>
         <p class="mt-7 text-white/50 leading-relaxed max-w-lg">
@@ -214,25 +227,25 @@ tailwind.config = {
 
       <div class="reveal relative">
         <div class="absolute -inset-10 glow opacity-60 blur-2xl"></div>
-        <div class="relative grid grid-cols-2 gap-4">
-          <div class="space-y-4">
-            <div class="rounded-2xl border hair bg-gradient-to-br from-brand-500 to-brand-700 p-7 on-brand aspect-[4/5] flex flex-col justify-between">
+        <div class="relative grid grid-cols-2 gap-3 sm:gap-4">
+          <div class="space-y-3 sm:space-y-4">
+            <div class="rounded-2xl border hair bg-gradient-to-br from-brand-500 to-brand-700 p-5 sm:p-7 on-brand aspect-[4/5] flex flex-col justify-between">
               <svg class="w-9 h-9" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v7H6z"/></svg>
-              <div><div class="font-display text-3xl font-extrabold leading-none">Digital<br>Printing</div><p class="mt-3 text-[13px] font-medium" style="color:rgba(255,255,255,.72)">A4 to A0 · same day</p></div>
+              <div><div class="font-display text-xl sm:text-3xl font-extrabold leading-none">Digital<br>Printing</div><p class="mt-3 text-[13px] font-medium" style="color:rgba(255,255,255,.72)">A4 to A0 · same day</p></div>
             </div>
-            <div class="rounded-2xl border hair bg-ink-800 p-7 aspect-square flex flex-col justify-between">
+            <div class="rounded-2xl border hair bg-ink-800 p-5 sm:p-7 aspect-square flex flex-col justify-between">
               <svg class="w-8 h-8 text-acc-400" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M3 9a2 2 0 0 1 2-2h2l2-2h6l2 2h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.5"/></svg>
-              <div><div class="font-display text-xl font-bold text-white">Photo Studio</div><p class="mt-2 text-[13px] text-white/40">Passport &amp; visa specs</p></div>
+              <div><div class="font-display text-base sm:text-xl font-bold text-white">Photo Studio</div><p class="mt-2 text-[13px] text-white/40">Passport &amp; visa specs</p></div>
             </div>
           </div>
-          <div class="space-y-4 pt-10">
-            <div class="rounded-2xl border hair bg-ink-800 p-7 aspect-square flex flex-col justify-between">
+          <div class="space-y-3 sm:space-y-4 pt-6 sm:pt-10">
+            <div class="rounded-2xl border hair bg-ink-800 p-5 sm:p-7 aspect-square flex flex-col justify-between">
               <svg class="w-8 h-8 text-brand-400" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-              <div><div class="font-display text-xl font-bold text-white">Binding</div><p class="mt-2 text-[13px] text-white/40">Spiral, thermal, hard case</p></div>
+              <div><div class="font-display text-base sm:text-xl font-bold text-white">Binding</div><p class="mt-2 text-[13px] text-white/40">Spiral, thermal, hard case</p></div>
             </div>
-            <div class="rounded-2xl border hair bg-white text-ink-950 p-7 aspect-[4/5] flex flex-col justify-between">
+            <div class="rounded-2xl border hair bg-white text-ink-950 p-5 sm:p-7 aspect-[4/5] flex flex-col justify-between">
               <svg class="w-9 h-9" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><circle cx="8" cy="11" r="2.2"/><path d="M14 10h5M14 14h3M4.5 17c1-1.8 2.2-2.5 3.5-2.5S10.5 15.2 11.5 17"/></svg>
-              <div><div class="font-display text-3xl font-extrabold leading-none">ID Cards<br>&amp; Lanyards</div><p class="mt-3 text-[13px] font-medium text-ink-950/60">Bulk orders welcome</p></div>
+              <div><div class="font-display text-xl sm:text-3xl font-extrabold leading-none">ID Cards<br>&amp; Lanyards</div><p class="mt-3 text-[13px] font-medium text-ink-950/60">Bulk orders welcome</p></div>
             </div>
           </div>
         </div>
@@ -242,30 +255,30 @@ tailwind.config = {
 </section>
 
 <!-- ============ PROCESS ============ -->
-<section id="process" class="py-28 lg:py-36">
+<section id="process" class="py-16 sm:py-16 sm:py-20 lg:py-28">
   <div class="mx-auto max-w-[1400px] px-5 lg:px-10">
     <div class="reveal max-w-3xl mb-16">
       <div class="text-[12px] tracking-[.28em] text-brand-400 mb-5">03 — HOW IT WORKS</div>
-      <h2 class="font-display font-bold tracking-[-.03em] leading-[1.05] text-[8.5vw] sm:text-5xl lg:text-6xl">Three steps, no back-and-forth.</h2>
+      <h2 class="font-display font-bold tracking-[-.03em] leading-[1.05] text-[clamp(2rem,7vw,3.75rem)]">Three steps, no back-and-forth.</h2>
     </div>
     <div class="grid md:grid-cols-3 gap-6" id="proc"></div>
   </div>
 </section>
 
 <!-- ============ LOCATIONS ============ -->
-<section id="locations" class="py-28 lg:py-36 border-y hair bg-ink-900/30">
+<section id="locations" class="py-16 sm:py-16 sm:py-20 lg:py-28 border-y hair bg-ink-900/30">
   <div class="mx-auto max-w-[1400px] px-5 lg:px-10">
     <div class="reveal grid lg:grid-cols-12 gap-8 items-end mb-14">
       <div class="lg:col-span-7">
         <div class="text-[12px] tracking-[.28em] text-brand-400 mb-5">04 — FIND US</div>
-        <h2 class="font-display font-bold tracking-[-.03em] leading-[1.02] text-[8.5vw] sm:text-5xl lg:text-6xl">Across Colombo.</h2>
+        <h2 class="font-display font-bold tracking-[-.03em] leading-[1.02] text-[clamp(2rem,7vw,3.75rem)]">Across Colombo.</h2>
       </div>
       <p class="lg:col-span-4 lg:col-start-9 text-white/50 leading-relaxed">Our flagship at Union Place carries the full service range. Satellite outlets cover everyday printing and copying.</p>
     </div>
 
     <div class="reveal grid lg:grid-cols-3 gap-6">
       <div class="lg:col-span-2 rounded-3xl border hair bg-ink-950 overflow-hidden">
-        <div class="p-8 lg:p-10">
+        <div class="p-6 sm:p-8 lg:p-10">
           <div class="flex items-start justify-between gap-6 flex-wrap">
             <div>
               <span class="inline-block rounded-full bg-brand-500/20 text-brand-300 text-[11px] tracking-[.2em] px-3 py-1.5 mb-5">FLAGSHIP</span>
@@ -284,7 +297,7 @@ tailwind.config = {
             <a href="https://wa.me/94777352900" class="bg-ink-900 p-5 hover:bg-ink-800 transition"><div class="text-[11px] tracking-[.2em] text-white/35 mb-2">WHATSAPP</div><div class="text-white font-medium">0777 352 900</div><div class="text-white/45 text-sm mt-0.5">0777 445 311 · 0766 592 900</div></a>
           </div>
         </div>
-        <iframe class="w-full h-72 grayscale contrast-125 opacity-70 border-t hair" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        <iframe class="w-full h-56 sm:h-72 grayscale contrast-125 opacity-70 border-t hair" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
           src="https://www.google.com/maps?q=466%20Union%20Place%2C%20Colombo%2000200%2C%20Sri%20Lanka&output=embed"></iframe>
       </div>
 
@@ -294,24 +307,24 @@ tailwind.config = {
 </section>
 
 <!-- ============ FAQ ============ -->
-<section id="faq" class="py-28 lg:py-36">
-  <div class="mx-auto max-w-[1400px] px-5 lg:px-10 grid lg:grid-cols-12 gap-14">
+<section id="faq" class="py-16 sm:py-16 sm:py-20 lg:py-28">
+  <div class="mx-auto max-w-[1400px] px-5 lg:px-10 grid lg:grid-cols-12 gap-10 lg:gap-14">
     <div class="lg:col-span-4 reveal">
       <div class="text-[12px] tracking-[.28em] text-brand-400 mb-5">05 — QUESTIONS</div>
-      <h2 class="font-display font-bold tracking-[-.03em] leading-[1.05] text-[8.5vw] sm:text-5xl lg:text-[3.2rem]">Straight answers.</h2>
+      <h2 class="font-display font-bold tracking-[-.03em] leading-[1.05] text-[clamp(2rem,6.5vw,3.2rem)]">Straight answers.</h2>
       <p class="mt-6 text-white/50 leading-relaxed">Can't find it here? Message us on WhatsApp — we usually reply within the hour during opening times.</p>
     </div>
-    <div class="lg:col-span-7 lg:col-start-6 reveal" id="faqs"></div>
+    <div class="lg:col-span-7 lg:col-start-6 reveal mt-2 lg:mt-0" id="faqs"></div>
   </div>
 </section>
 
 <!-- ============ CTA / CONTACT ============ -->
-<section id="contact" class="relative py-28 lg:py-36 overflow-hidden border-t hair">
+<section id="contact" class="relative py-16 sm:py-16 sm:py-20 lg:py-28 overflow-hidden border-t hair">
   <div class="absolute inset-x-0 -top-32 h-[700px] glow"></div>
   <div class="relative mx-auto max-w-[1400px] px-5 lg:px-10">
-    <div class="grid lg:grid-cols-2 gap-16">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
       <div class="reveal">
-        <h2 class="font-display font-extrabold tracking-[-.035em] leading-[.95] text-[11vw] sm:text-6xl lg:text-[4.6rem]">
+        <h2 class="font-display font-extrabold tracking-[-.035em] leading-[.95] text-[clamp(2.5rem,9vw,4.6rem)]">
           Send us<br>your <span class="gtext">job.</span>
         </h2>
         <p class="mt-7 text-white/55 leading-relaxed max-w-md">Tell us what you need printed, designed or documented. We'll come back with a price and a realistic collection time.</p>
@@ -321,7 +334,7 @@ tailwind.config = {
         </div>
       </div>
 
-      <form class="reveal rounded-3xl border hair bg-ink-900/60 backdrop-blur p-7 lg:p-9 space-y-5" onsubmit="event.preventDefault();this.reset();document.getElementById('sent').classList.remove('hidden')">
+      <form class="reveal rounded-3xl border hair bg-ink-900/60 backdrop-blur p-6 sm:p-7 lg:p-9 space-y-5" onsubmit="event.preventDefault();this.reset();document.getElementById('sent').classList.remove('hidden')">
         <div class="grid sm:grid-cols-2 gap-5">
           <label class="block"><span class="text-[12px] tracking-[.18em] text-white/40">NAME</span>
             <input required class="mt-2 w-full rounded-xl bg-ink-950 border hair px-4 py-3 text-white outline-none focus:border-brand-400/60 transition" placeholder="Your name"></label>
@@ -347,7 +360,7 @@ tailwind.config = {
 <!-- ============ FOOTER ============ -->
 <footer class="border-t hair bg-ink-900/40">
   <div class="mx-auto max-w-[1400px] px-5 lg:px-10 py-16">
-    <div class="grid md:grid-cols-12 gap-10">
+    <div class="grid sm:grid-cols-2 md:grid-cols-12 gap-10">
       <div class="md:col-span-5">
         <div class="flex items-center gap-3">
           <img id="logoFoot" src="assets/logo-white.png" alt="Salaka Senkada" width="404" height="114" class="h-9 w-auto">
@@ -384,7 +397,7 @@ tailwind.config = {
   </div>
 </footer>
 
-<a href="https://wa.me/94777352900" class="fixed bottom-6 right-6 z-50 grid place-items-center h-14 w-14 rounded-full bg-[#25D366] on-brand shadow-2xl shadow-black/50 hover:scale-105 transition">
+<a href="https://wa.me/94777352900" class="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 grid place-items-center h-[52px] w-[52px] sm:h-14 sm:w-14 mb-[env(safe-area-inset-bottom)] rounded-full bg-[#25D366] on-brand shadow-2xl shadow-black/50 hover:scale-105 transition">
   <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.5 12.4c-.3-.2-1.8-.9-2-1s-.5-.2-.7.1-.8 1-1 1.2-.4.2-.7 0a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.6-2c-.2-.4 0-.5.1-.7l.5-.6.3-.5v-.5l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.4-1.1 1.2-1.1 2.8s1.2 3.2 1.3 3.5c.2.2 2.3 3.6 5.6 4.9 3.3 1.3 3.3.9 3.9.8.6 0 1.8-.7 2-1.4.3-.8.3-1.4.2-1.5l-.7-.4Z"/></svg>
 </a>
 
@@ -402,7 +415,7 @@ const SERVICES = [
   ['Stationery &amp; Books','A full bookshop and stationery counter — office supplies, school lists, art materials and gift wrap.','<path d="M4 4a2 2 0 0 1 2-2h13v18H6a2 2 0 0 0-2 2z"/><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H19v5H6.5A2.5 2.5 0 0 1 4 19.5z"/>']
 ];
 document.getElementById('svc').innerHTML = SERVICES.map(([t,d,p],i)=>`
- <div class="reveal group bg-ink-950 p-8 lg:p-10 hover:bg-ink-800 transition-colors duration-300" style="transition-delay:${(i%3)*70}ms">
+ <div class="reveal group bg-ink-950 p-7 sm:p-8 lg:p-10 hover:bg-ink-800 transition-colors duration-300" style="transition-delay:${(i%3)*70}ms">
    <div class="text-brand-400 group-hover:text-acc-400 transition-colors">${ic(p)}</div>
    <h3 class="mt-7 font-display text-xl font-semibold text-white tracking-tight">${t}</h3>
    <p class="mt-3 text-[14.5px] leading-relaxed text-white/45">${d}</p>
@@ -417,7 +430,7 @@ const PROC = [
   ['Collect or have it delivered','Pick up at the counter, or arrange courier delivery within Colombo for larger orders.']
 ];
 document.getElementById('proc').innerHTML = PROC.map(([t,d],i)=>`
- <div class="reveal rounded-3xl border hair bg-ink-900/40 p-8 lg:p-10" style="transition-delay:${i*90}ms">
+ <div class="reveal rounded-3xl border hair bg-ink-900/40 p-7 sm:p-8 lg:p-10" style="transition-delay:${i*90}ms">
    <div class="font-display text-6xl font-extrabold text-white/[.08]">0${i+1}</div>
    <h3 class="mt-6 font-display text-2xl font-bold text-white tracking-tight">${t}</h3>
    <p class="mt-4 text-[15px] leading-relaxed text-white/45">${d}</p>
@@ -449,7 +462,7 @@ document.getElementById('faqs').innerHTML = FAQ.map(([q,a],i)=>`
        <svg class="w-3.5 h-3.5 group-open:rotate-45 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
      </span>
    </summary>
-   <p class="mt-4 pr-14 text-[15px] leading-relaxed text-white/45">${a}</p>
+   <p class="mt-4 pr-8 sm:pr-14 text-[15px] leading-relaxed text-white/45">${a}</p>
  </details>`).join('');
 
 const words = ['Digital Printing','Photocopying','Binding','Lamination','Photo Studio','ID Cards','Lanyards','Stickers','Design &amp; Artwork','Translation','Stationery','Bookshop'];
