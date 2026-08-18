@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salaka Senkada — One-Stop Print, Design &amp; Document Services | Colombo</title>
+<meta name="description" content="Salaka Senkada, part of the Senkada Group. Printing, photocopying, binding, photo studio, ID cards, stationery and document translation at 466 Union Place, Colombo 02.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: { sans: ['Inter','system-ui','sans-serif'], display: ['Sora','system-ui','sans-serif'] },
+      colors: {
+        ink:  { 950:'#07070A', 900:'#0C0C11', 800:'#14141C', 700:'#1E1E29' },
+        brand:{ 300:'#9CCDF5', 400:'#5AA9E6', 500:'#1160A8', 600:'#0D4C86', 700:'#093A67' },
+        acc:  { 400:'#7DD3FC', 500:'#38BDF8' }
+      },
+      keyframes: {
+        marquee: { '0%':{transform:'translateX(0)'}, '100%':{transform:'translateX(-50%)'} },
+        rise: { '0%':{opacity:'0',transform:'translateY(24px)'}, '100%':{opacity:'1',transform:'translateY(0)'} }
+      },
+      animation: { marquee:'marquee 28s linear infinite', rise:'rise .7s cubic-bezier(.2,.7,.2,1) both' }
+    }
+  }
+}
+</script>
+<style>
+  body{ background:#07070A; }
+  .grain:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");}
+  .glow{background:radial-gradient(60% 60% at 50% 40%,rgba(17,96,168,.42),transparent 70%);}
+  .glow2{background:radial-gradient(50% 50% at 50% 50%,rgba(90,169,230,.20),transparent 70%);}
+  .hair{border-color:rgba(255,255,255,.08);}
+  .gtext{background:linear-gradient(92deg,#9CCDF5 0%,#5AA9E6 45%,#7DD3FC 100%);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in{opacity:1;transform:none;}
+  ::selection{background:#1160A8;color:#fff;}
+</style>
+</head>
+<body class="grain bg-ink-950 text-white/90 font-sans antialiased selection:bg-brand-500">
+
+<!-- ============ NAV ============ -->
+<header id="nav" class="fixed top-0 inset-x-0 z-50 transition-all duration-500">
+  <div class="mx-auto max-w-[1400px] px-5 lg:px-10">
+    <div class="flex items-center justify-between h-20">
+      <a href="#top" class="flex items-center gap-3 group">
+        <span class="grid place-items-center h-11 w-11 rounded-full bg-white/[.06] border hair"><svg viewBox="0 0 100 100" class="h-8 w-8"><circle cx="50" cy="50" r="46" fill="#1160A8"/><path d="M60 28c-14-3-25 3-25 12 0 11 19 12 19 22 0 8-9 12-19 10" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round"/></svg></span>
+        <span class="leading-none">
+          <span class="block font-display font-extrabold tracking-tight text-[17px] text-white">SALAKA SENKADA</span>
+          <span class="block text-[10px] tracking-[.28em] text-white/40 mt-1">SENKADA GROUP</span>
+        </span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-9 text-[13.5px] font-medium text-white/60">
+        <a href="#services" class="hover:text-white transition">Services</a>
+        <a href="#work" class="hover:text-white transition">Capabilities</a>
+        <a href="#locations" class="hover:text-white transition">Locations</a>
+        <a href="#process" class="hover:text-white transition">How it works</a>
+        <a href="#faq" class="hover:text-white transition">FAQ</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="tel:+94112672085" class="hidden md:inline-flex text-[13.5px] font-medium text-white/70 hover:text-white transition">+94 11 267 2085</a>
+        <a href="#contact" class="inline-flex items-center gap-2 rounded-full bg-white text-ink-950 px-5 py-2.5 text-[13.5px] font-semibold hover:bg-brand-400 transition-colors">
+          Get a quote
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <button id="burger" class="lg:hidden grid place-items-center h-10 w-10 rounded-lg border hair">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="mobile" class="lg:hidden hidden border-t hair bg-ink-900/95 backdrop-blur-xl">
+    <div class="px-6 py-6 flex flex-col gap-4 text-[15px]">
+      <a href="#services" class="text-white/70">Services</a>
+      <a href="#work" class="text-white/70">Capabilities</a>
+      <a href="#locations" class="text-white/70">Locations</a>
+      <a href="#process" class="text-white/70">How it works</a>
+      <a href="#faq" class="text-white/70">FAQ</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="top" class="relative min-h-[100svh] flex items-end overflow-hidden pb-16">
+  <div class="absolute -top-40 left-1/2 -translate-x-1/2 h-[900px] w-[1200px] glow"></div>
+  <div class="absolute top-1/3 -right-40 h-[600px] w-[600px] glow2"></div>
+  <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.028)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.028)_1px,transparent_1px)] bg-[size:70px_70px] [mask-image:radial-gradient(70%_60%_at_50%_45%,#000,transparent)]"></div>
+
+  <div class="relative mx-auto max-w-[1400px] px-5 lg:px-10 w-full pt-36">
+    <div class="animate-rise inline-flex items-center gap-2.5 rounded-full border hair bg-white/[.04] px-4 py-2 text-[12px] tracking-wide text-white/60 backdrop-blur">
+      <span class="relative flex h-2 w-2"><span class="animate-ping absolute h-full w-full rounded-full bg-acc-400 opacity-70"></span><span class="relative h-2 w-2 rounded-full bg-acc-500"></span></span>
+      Open 6:00 AM – 11:30 PM, every day of the year
+    </div>
+
+    <h1 class="animate-rise mt-8 font-display font-extrabold tracking-[-.035em] leading-[.92] text-[13vw] sm:text-[10vw] lg:text-[7.4vw]">
+      Everything you need.<br>
+      <span class="gtext">Under one roof.</span>
+    </h1>
+
+    <div class="mt-10 grid lg:grid-cols-12 gap-10 items-end">
+      <p class="lg:col-span-5 text-[17px] leading-relaxed text-white/55 max-w-xl">
+        Salaka Senkada is Colombo's one-stop shop for printing, design, documents and everything in between — a Senkada Group business trusted at 466 Union Place for more than a generation.
+      </p>
+      <div class="lg:col-span-4 lg:col-start-9 flex flex-wrap gap-3">
+        <a href="https://wa.me/94777352900" class="inline-flex items-center gap-2 rounded-full bg-brand-500 text-white px-6 py-3.5 text-sm font-semibold hover:bg-brand-400 transition">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1s-.5-.2-.7.1-.8 1-1 1.2-.4.2-.7 0a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.6-2c-.2-.4 0-.5.1-.7l.5-.6.3-.5v-.5l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.4-1.1 1.2-1.1 2.8s1.2 3.2 1.3 3.5c.2.2 2.3 3.6 5.6 4.9 3.3 1.3 3.3.9 3.9.8.6 0 1.8-.7 2-1.4.3-.8.3-1.4.2-1.5l-.7-.4ZM12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Z"/></svg>
+          WhatsApp 0777 352 900
+        </a>
+        <a href="#services" class="inline-flex items-center gap-2 rounded-full border hair px-6 py-3.5 text-sm font-semibold text-white hover:bg-white/[.06] transition">Browse services</a>
+      </div>
+    </div>
+
+    <div class="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/[.07] rounded-2xl overflow-hidden border hair">
+      <div class="bg-ink-950/70 backdrop-blur p-6"><div class="font-display text-4xl font-bold text-white">18h</div><div class="mt-1.5 text-[12.5px] text-white/45">Open daily, 365 days</div></div>
+      <div class="bg-ink-950/70 backdrop-blur p-6"><div class="font-display text-4xl font-bold text-white">1,300<span class="text-brand-400">+</span></div><div class="mt-1.5 text-[12.5px] text-white/45">Google reviews</div></div>
+      <div class="bg-ink-950/70 backdrop-blur p-6"><div class="font-display text-4xl font-bold text-white">20<span class="text-brand-400">+</span></div><div class="mt-1.5 text-[12.5px] text-white/45">Services in-house</div></div>
+      <div class="bg-ink-950/70 backdrop-blur p-6"><div class="font-display text-4xl font-bold text-white">5</div><div class="mt-1.5 text-[12.5px] text-white/45">Colombo outlets</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="border-y hair py-5 overflow-hidden bg-ink-900/40">
+  <div class="flex w-max animate-marquee gap-12 whitespace-nowrap font-display text-[13px] tracking-[.22em] text-white/30 uppercase">
+    <span class="flex gap-12" id="mq"></span><span class="flex gap-12" id="mq2"></span>
+  </div>
+</div>
+
+<!-- ============ SERVICES ============ -->
+<section id="services" class="relative py-28 lg:py-40">
+  <div class="mx-auto max-w-[1400px] px-5 lg:px-10">
+    <div class="reveal grid lg:grid-cols-12 gap-8 items-end mb-16">
+      <div class="lg:col-span-7">
+        <div class="text-[12px] tracking-[.28em] text-brand-400 mb-5">01 — WHAT WE DO</div>
+        <h2 class="font-display font-bold tracking-[-.03em] leading-[1.02] text-[8.5vw] sm:text-5xl lg:text-6xl">
+          One counter.<br>Twenty-plus services.
+        </h2>
+      </div>
+      <p class="lg:col-span-4 lg:col-start-9 text-white/50 leading-relaxed">
+        From a single passport photo to a 5,000-piece print run — we handle it in-house, so nothing gets outsourced, delayed or lost between vendors.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/[.07] rounded-3xl overflow-hidden border hair" id="svc"></div>
+  </div>
+</section>
+
+<!-- ============ CAPABILITY / SPLIT ============ -->
+<section id="work" class="relative py-24 lg:py-32 border-y hair bg-ink-900/30">
+  <div class="mx-auto max-w-[1400px] px-5 lg:px-10">
+    <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <div class="reveal">
+        <div class="text-[12px] tracking-[.28em] text-brand-400 mb-5">02 — WHY SALAKA</div>
+        <h2 class="font-display font-bold tracking-[-.03em] leading-[1.05] text-[8.5vw] sm:text-5xl lg:text-[3.4rem]">
+          Built for people<br>in a <span class="gtext">hurry</span>.
+        </h2>
+        <p class="mt-7 text-white/50 leading-relaxed max-w-lg">
+          Union Place doesn't sleep, and neither does the queue. We've restructured our counters so the fast jobs move fast — and the big jobs get the attention they deserve.
+        </p>
+        <div class="mt-10 space-y-px bg-white/[.07] rounded-2xl overflow-hidden border hair">
+          <div class="bg-ink-950 p-6 flex gap-5">
+            <span class="font-display text-brand-400 text-sm pt-1">01</span>
+            <div><h3 class="font-display font-semibold text-white">Express counter for quick jobs</h3><p class="mt-2 text-[14.5px] text-white/45 leading-relaxed">Photocopies, passport photos, binding and lamination handled on a separate queue so a two-minute job never waits behind a two-hour one.</p></div>
+          </div>
+          <div class="bg-ink-950 p-6 flex gap-5">
+            <span class="font-display text-brand-400 text-sm pt-1">02</span>
+            <div><h3 class="font-display font-semibold text-white">Send it ahead on WhatsApp</h3><p class="mt-2 text-[14.5px] text-white/45 leading-relaxed">Message your files to 0777 352 900 and we'll confirm price and pickup time before you leave home. Collect and pay at the counter.</p></div>
+          </div>
+          <div class="bg-ink-950 p-6 flex gap-5">
+            <span class="font-display text-brand-400 text-sm pt-1">03</span>
+            <div><h3 class="font-display font-semibold text-white">Bulk &amp; corporate accounts</h3><p class="mt-2 text-[14.5px] text-white/45 leading-relaxed">Scheduled slots, dedicated handling and monthly invoicing for offices, schools and event organisers.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal relative">
+        <div class="absolute -inset-10 glow opacity-60 blur-2xl"></div>
+        <div class="relative grid grid-cols-2 gap-4">
+          <div class="space-y-4">
+            <div class="rounded-2xl border hair bg-gradient-to-br from-brand-500 to-brand-700 p-7 text-white aspect-[4/5] flex flex-col justify-between">
+              <svg class="w-9 h-9" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v7H6z"/></svg>
+              <div><div class="font-display text-3xl font-extrabold leading-none">Digital<br>Printing</div><p class="mt-3 text-[13px] font-medium text-white/70">A4 to A0 · same day</p></div>
+            </div>
+            <div class="rounded-2xl border hair bg-ink-800 p-7 aspect-square flex flex-col justify-between">
+              <svg class="w-8 h-8 text-acc-400" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M3 9a2 2 0 0 1 2-2h2l2-2h6l2 2h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.5"/></svg>
+              <div><div class="font-display text-xl font-bold text-white">Photo Studio</div><p class="mt-2 text-[13px] text-white/40">Passport &amp; visa specs</p></div>
+            </div>
+          </div>
+          <div class="space-y-4 pt-10">
+            <div class="rounded-2xl border hair bg-ink-800 p-7 aspect-square flex flex-col justify-between">
+              <svg class="w-8 h-8 text-brand-400" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              <div><div class="font-display text-xl font-bold text-white">Binding</div><p class="mt-2 text-[13px] text-white/40">Spiral, thermal, hard case</p></div>
+            </div>
+            <div class="rounded-2xl border hair bg-white text-ink-950 p-7 aspect-[4/5] flex flex-col justify-between">
+              <svg class="w-9 h-9" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><circle cx="8" cy="11" r="2.2"/><path d="M14 10h5M14 14h3M4.5 17c1-1.8 2.2-2.5 3.5-2.5S10.5 15.2 11.5 17"/></svg>
+              <div><div class="font-display text-3xl font-extrabold leading-none">ID Cards<br>&amp; Lanyards</div><p class="mt-3 text-[13px] font-medium text-ink-950/60">Bulk orders welcome</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section id="process" class="py-28 lg:py-36">
+  <div class="mx-auto max-w-[1400px] px-5 lg:px-10">
+    <div class="reveal max-w-3xl mb-16">
+      <div class="text-[12px] tracking-[.28em] text-brand-400 mb-5">03 — HOW IT WORKS</div>
+      <h2 class="font-display font-bold tracking-[-.03em] leading-[1.05] text-[8.5vw] sm:text-5xl lg:text-6xl">Three steps, no back-and-forth.</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6" id="proc"></div>
+  </div>
+</section>
+
+<!-- ============ LOCATIONS ============ -->
+<section id="locations" class="py-28 lg:py-36 border-y hair bg-ink-900/30">
+  <div class="mx-auto max-w-[1400px] px-5 lg:px-10">
+    <div class="reveal grid lg:grid-cols-12 gap-8 items-end mb-14">
+      <div class="lg:col-span-7">
+        <div class="text-[12px] tracking-[.28em] text-brand-400 mb-5">04 — FIND US</div>
+        <h2 class="font-display font-bold tracking-[-.03em] leading-[1.02] text-[8.5vw] sm:text-5xl lg:text-6xl">Across Colombo.</h2>
+      </div>
+      <p class="lg:col-span-4 lg:col-start-9 text-white/50 leading-relaxed">Our flagship at Union Place carries the full service range. Satellite outlets cover everyday printing and copying.</p>
+    </div>
+
+    <div class="reveal grid lg:grid-cols-3 gap-6">
+      <div class="lg:col-span-2 rounded-3xl border hair bg-ink-950 overflow-hidden">
+        <div class="p-8 lg:p-10">
+          <div class="flex items-start justify-between gap-6 flex-wrap">
+            <div>
+              <span class="inline-block rounded-full bg-brand-500/20 text-brand-300 text-[11px] tracking-[.2em] px-3 py-1.5 mb-5">FLAGSHIP</span>
+              <h3 class="font-display text-3xl lg:text-4xl font-bold text-white tracking-tight">Union Place</h3>
+              <p class="mt-3 text-white/50 leading-relaxed">466 Union Place,<br>Colombo 00200, Sri Lanka</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="flex text-brand-400">★★★<span class="text-white/25">★★</span></div>
+              <span class="text-sm text-white/40">3.7 · 1,333 reviews</span>
+            </div>
+          </div>
+          <div class="mt-8 grid sm:grid-cols-2 gap-px bg-white/[.07] rounded-2xl overflow-hidden border hair">
+            <a href="tel:+94112672085" class="bg-ink-900 p-5 hover:bg-ink-800 transition"><div class="text-[11px] tracking-[.2em] text-white/35 mb-2">PHONE</div><div class="text-white font-medium">+94 11 267 2085</div><div class="text-white/45 text-sm mt-0.5">+94 11 267 2080</div></a>
+            <a href="mailto:salakaonline@gmail.com" class="bg-ink-900 p-5 hover:bg-ink-800 transition"><div class="text-[11px] tracking-[.2em] text-white/35 mb-2">EMAIL</div><div class="text-white font-medium break-all">salakaonline@gmail.com</div></a>
+            <div class="bg-ink-900 p-5"><div class="text-[11px] tracking-[.2em] text-white/35 mb-2">HOURS</div><div class="text-white font-medium">6:00 AM – 11:30 PM</div><div class="text-white/45 text-sm mt-0.5">Open all seven days</div></div>
+            <a href="https://wa.me/94777352900" class="bg-ink-900 p-5 hover:bg-ink-800 transition"><div class="text-[11px] tracking-[.2em] text-white/35 mb-2">WHATSAPP</div><div class="text-white font-medium">0777 352 900</div><div class="text-white/45 text-sm mt-0.5">0777 445 311 · 0766 592 900</div></a>
+          </div>
+        </div>
+        <iframe class="w-full h-72 grayscale contrast-125 opacity-70 border-t hair" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=466%20Union%20Place%2C%20Colombo%2000200%2C%20Sri%20Lanka&output=embed"></iframe>
+      </div>
+
+      <div class="space-y-6" id="branches"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" class="py-28 lg:py-36">
+  <div class="mx-auto max-w-[1400px] px-5 lg:px-10 grid lg:grid-cols-12 gap-14">
+    <div class="lg:col-span-4 reveal">
+      <div class="text-[12px] tracking-[.28em] text-brand-400 mb-5">05 — QUESTIONS</div>
+      <h2 class="font-display font-bold tracking-[-.03em] leading-[1.05] text-[8.5vw] sm:text-5xl lg:text-[3.2rem]">Straight answers.</h2>
+      <p class="mt-6 text-white/50 leading-relaxed">Can't find it here? Message us on WhatsApp — we usually reply within the hour during opening times.</p>
+    </div>
+    <div class="lg:col-span-7 lg:col-start-6 reveal" id="faqs"></div>
+  </div>
+</section>
+
+<!-- ============ CTA / CONTACT ============ -->
+<section id="contact" class="relative py-28 lg:py-36 overflow-hidden border-t hair">
+  <div class="absolute inset-x-0 -top-32 h-[700px] glow"></div>
+  <div class="relative mx-auto max-w-[1400px] px-5 lg:px-10">
+    <div class="grid lg:grid-cols-2 gap-16">
+      <div class="reveal">
+        <h2 class="font-display font-extrabold tracking-[-.035em] leading-[.95] text-[11vw] sm:text-6xl lg:text-[4.6rem]">
+          Send us<br>your <span class="gtext">job.</span>
+        </h2>
+        <p class="mt-7 text-white/55 leading-relaxed max-w-md">Tell us what you need printed, designed or documented. We'll come back with a price and a realistic collection time.</p>
+        <div class="mt-10 flex flex-wrap gap-3">
+          <a href="https://wa.me/94777352900" class="rounded-full bg-brand-500 text-white px-6 py-3.5 text-sm font-semibold hover:bg-brand-400 transition">WhatsApp us</a>
+          <a href="tel:+94112672085" class="rounded-full border hair px-6 py-3.5 text-sm font-semibold text-white hover:bg-white/[.06] transition">Call the shop</a>
+        </div>
+      </div>
+
+      <form class="reveal rounded-3xl border hair bg-ink-900/60 backdrop-blur p-7 lg:p-9 space-y-5" onsubmit="event.preventDefault();this.reset();document.getElementById('sent').classList.remove('hidden')">
+        <div class="grid sm:grid-cols-2 gap-5">
+          <label class="block"><span class="text-[12px] tracking-[.18em] text-white/40">NAME</span>
+            <input required class="mt-2 w-full rounded-xl bg-ink-950 border hair px-4 py-3 text-white outline-none focus:border-brand-400/60 transition" placeholder="Your name"></label>
+          <label class="block"><span class="text-[12px] tracking-[.18em] text-white/40">PHONE</span>
+            <input required class="mt-2 w-full rounded-xl bg-ink-950 border hair px-4 py-3 text-white outline-none focus:border-brand-400/60 transition" placeholder="07X XXX XXXX"></label>
+        </div>
+        <label class="block"><span class="text-[12px] tracking-[.18em] text-white/40">SERVICE</span>
+          <select class="mt-2 w-full rounded-xl bg-ink-950 border hair px-4 py-3 text-white outline-none focus:border-brand-400/60 transition">
+            <option>Digital printing</option><option>Photocopying &amp; binding</option><option>Photo studio / passport photos</option>
+            <option>ID cards &amp; lanyards</option><option>Design &amp; artwork</option><option>Document translation</option>
+            <option>Stickers &amp; signage</option><option>Stationery / bookshop</option><option>Something else</option>
+          </select></label>
+        <label class="block"><span class="text-[12px] tracking-[.18em] text-white/40">DETAILS</span>
+          <textarea rows="4" class="mt-2 w-full rounded-xl bg-ink-950 border hair px-4 py-3 text-white outline-none focus:border-brand-400/60 transition resize-none" placeholder="Quantity, size, paper, deadline…"></textarea></label>
+        <button class="w-full rounded-xl bg-white text-ink-950 py-4 font-semibold hover:bg-brand-300 transition">Request a quote</button>
+        <p id="sent" class="hidden text-center text-acc-400 text-sm">Thanks — we'll be in touch shortly.</p>
+        <p class="text-center text-[12px] text-white/30">Or email <a href="mailto:salakaonline@gmail.com" class="underline decoration-white/20 hover:text-white/60">salakaonline@gmail.com</a></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="border-t hair bg-ink-900/40">
+  <div class="mx-auto max-w-[1400px] px-5 lg:px-10 py-16">
+    <div class="grid md:grid-cols-12 gap-10">
+      <div class="md:col-span-5">
+        <div class="flex items-center gap-3">
+          <span class="grid place-items-center h-11 w-11 rounded-full bg-white/[.06] border hair"><svg viewBox="0 0 100 100" class="h-8 w-8"><circle cx="50" cy="50" r="46" fill="#1160A8"/><path d="M60 28c-14-3-25 3-25 12 0 11 19 12 19 22 0 8-9 12-19 10" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round"/></svg></span>
+          <span><span class="block font-display font-extrabold tracking-tight text-white">SALAKA SENKADA</span><span class="block text-[10px] tracking-[.28em] text-white/40 mt-1">SENKADA GROUP</span></span>
+        </div>
+        <p class="mt-6 text-white/45 leading-relaxed max-w-sm text-[15px]">Colombo's one-stop shop for printing, design and document services since the Union Place days.</p>
+        <div class="mt-6 flex gap-3">
+          <a href="https://facebook.com/salakasenkadalk" class="grid place-items-center h-10 w-10 rounded-full border hair text-white/60 hover:text-white hover:bg-brand-500 transition"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1z"/></svg></a>
+          <a href="https://instagram.com/salakasenkada" class="grid place-items-center h-10 w-10 rounded-full border hair text-white/60 hover:text-white hover:bg-brand-500 transition"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.2" cy="6.8" r="1"/></svg></a>
+          <a href="https://wa.me/94777352900" class="grid place-items-center h-10 w-10 rounded-full border hair text-white/60 hover:text-white hover:bg-brand-500 transition"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.5 12.4c-.3-.2-1.8-.9-2-1s-.5-.2-.7.1-.8 1-1 1.2-.4.2-.7 0a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.6-2c-.2-.4 0-.5.1-.7l.5-.6.3-.5v-.5l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.4-1.1 1.2-1.1 2.8s1.2 3.2 1.3 3.5c.2.2 2.3 3.6 5.6 4.9 3.3 1.3 3.3.9 3.9.8.6 0 1.8-.7 2-1.4.3-.8.3-1.4.2-1.5l-.7-.4Z"/></svg></a>
+        </div>
+      </div>
+      <div class="md:col-span-3">
+        <h4 class="text-[12px] tracking-[.24em] text-white/35 mb-5">SERVICES</h4>
+        <ul class="space-y-3 text-[15px] text-white/55">
+          <li><a href="#services" class="hover:text-white transition">Digital printing</a></li>
+          <li><a href="#services" class="hover:text-white transition">Photocopy &amp; binding</a></li>
+          <li><a href="#services" class="hover:text-white transition">Photo studio</a></li>
+          <li><a href="#services" class="hover:text-white transition">ID cards &amp; lanyards</a></li>
+          <li><a href="#services" class="hover:text-white transition">Document translation</a></li>
+        </ul>
+      </div>
+      <div class="md:col-span-4">
+        <h4 class="text-[12px] tracking-[.24em] text-white/35 mb-5">VISIT</h4>
+        <p class="text-[15px] text-white/55 leading-relaxed">466 Union Place, Colombo 00200<br>Sri Lanka</p>
+        <p class="mt-4 text-[15px] text-white/55">+94 11 267 2085<br>salakaonline@gmail.com</p>
+        <p class="mt-4 text-[15px] text-white/40">Daily · 6:00 AM – 11:30 PM</p>
+      </div>
+    </div>
+    <div class="mt-14 pt-8 border-t hair flex flex-col sm:flex-row justify-between gap-4 text-[13px] text-white/30">
+      <p>© <span id="yr"></span> Salaka Senkada · Senkada Group. All rights reserved.</p>
+      <p>Colombo, Sri Lanka</p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/94777352900" class="fixed bottom-6 right-6 z-50 grid place-items-center h-14 w-14 rounded-full bg-[#25D366] text-white shadow-2xl shadow-black/50 hover:scale-105 transition">
+  <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.5 12.4c-.3-.2-1.8-.9-2-1s-.5-.2-.7.1-.8 1-1 1.2-.4.2-.7 0a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.6-2c-.2-.4 0-.5.1-.7l.5-.6.3-.5v-.5l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.4-1.1 1.2-1.1 2.8s1.2 3.2 1.3 3.5c.2.2 2.3 3.6 5.6 4.9 3.3 1.3 3.3.9 3.9.8.6 0 1.8-.7 2-1.4.3-.8.3-1.4.2-1.5l-.7-.4Z"/></svg>
+</a>
+
+<script>
+const ic = p => `<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">${p}</svg>`;
+const SERVICES = [
+  ['Digital Printing','A4 through A0, single sheets to full runs — banners, posters, flyers, brochures and business cards on same-day turnaround.','<path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v7H6z"/>'],
+  ['Photocopying','High-volume black &amp; white and colour copying, scanning and document digitisation while you wait.','<rect x="4" y="3" width="16" height="7" rx="1.5"/><rect x="4" y="14" width="16" height="7" rx="1.5"/><path d="M8 10v4M16 10v4"/>'],
+  ['Binding &amp; Lamination','Spiral, thermal, comb and hard-case binding. Lamination from ID size to A3, matte or gloss.','<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>'],
+  ['Photo Studio','Passport, visa and ID photographs shot to embassy specifications, printed and delivered in minutes.','<path d="M3 9a2 2 0 0 1 2-2h2l2-2h6l2 2h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.5"/>'],
+  ['Design &amp; Artwork','In-house designers for logos, layouts, invitations and campaign artwork — print-ready files every time.','<path d="M12 19l7-7 3 3-7 7-3-3zM18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5zM2 2l7.6 7.6"/><circle cx="11" cy="11" r="2"/>'],
+  ['ID Cards &amp; Lanyards','PVC cards, staff and school IDs, custom-printed lanyards and holders. Bulk pricing on request.','<rect x="2" y="4" width="20" height="16" rx="2"/><circle cx="8" cy="11" r="2.2"/><path d="M14 10h5M14 14h3"/>'],
+  ['Custom Stickers','Die-cut, vinyl, transparent and label stickers for products, vehicles, packaging and events.','<path d="M15 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h9l7-7V5a2 2 0 0 0-2-2z"/><path d="M14 21v-5a2 2 0 0 1 2-2h5"/>'],
+  ['Document Translation','Certified translations with JP notary signature service for official, legal and immigration paperwork.','<path d="M4 5h7M7.5 5v2c0 3-1.5 5.5-3.5 7M5 9c0 2.5 2.5 5 6 6M13 19l4-10 4 10M14.5 16h5"/>'],
+  ['Stationery &amp; Books','A full bookshop and stationery counter — office supplies, school lists, art materials and gift wrap.','<path d="M4 4a2 2 0 0 1 2-2h13v18H6a2 2 0 0 0-2 2z"/><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H19v5H6.5A2.5 2.5 0 0 1 4 19.5z"/>']
+];
+document.getElementById('svc').innerHTML = SERVICES.map(([t,d,p],i)=>`
+ <div class="reveal group bg-ink-950 p-8 lg:p-10 hover:bg-ink-800 transition-colors duration-300" style="transition-delay:${(i%3)*70}ms">
+   <div class="text-brand-400 group-hover:text-acc-400 transition-colors">${ic(p)}</div>
+   <h3 class="mt-7 font-display text-xl font-semibold text-white tracking-tight">${t}</h3>
+   <p class="mt-3 text-[14.5px] leading-relaxed text-white/45">${d}</p>
+   <div class="mt-6 inline-flex items-center gap-2 text-[13px] font-medium text-white/30 group-hover:text-brand-400 transition-colors">
+     Enquire <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+   </div>
+ </div>`).join('');
+
+const PROC = [
+  ['Send or bring your files','WhatsApp your artwork to 0777 352 900, email it, or walk in with a USB. We accept PDF, AI, PSD, Word and image files.'],
+  ['Confirm price &amp; timing','We quote on the spot and give you a realistic collection time — no vague "come back later".'],
+  ['Collect or have it delivered','Pick up at the counter, or arrange courier delivery within Colombo for larger orders.']
+];
+document.getElementById('proc').innerHTML = PROC.map(([t,d],i)=>`
+ <div class="reveal rounded-3xl border hair bg-ink-900/40 p-8 lg:p-10" style="transition-delay:${i*90}ms">
+   <div class="font-display text-6xl font-extrabold text-white/[.08]">0${i+1}</div>
+   <h3 class="mt-6 font-display text-2xl font-bold text-white tracking-tight">${t}</h3>
+   <p class="mt-4 text-[15px] leading-relaxed text-white/45">${d}</p>
+ </div>`).join('');
+
+const BR = [['Nugegoda','High Level Road area','Printing · Copying · Binding'],['Darley Road','Colombo 10','Printing · Stationery'],['Maradana','Colombo 10','Copying · Photo studio'],['Ward Place','Near Union Place','Express print counter']];
+document.getElementById('branches').innerHTML = BR.map(([n,a,s])=>`
+ <div class="rounded-2xl border hair bg-ink-950 p-6 hover:bg-ink-900 transition">
+   <div class="flex items-start justify-between gap-4">
+     <div><h3 class="font-display text-lg font-semibold text-white">${n}</h3><p class="mt-1 text-[13.5px] text-white/40">${a}</p></div>
+     <svg class="w-4 h-4 text-white/25 shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg>
+   </div>
+   <p class="mt-4 text-[12.5px] tracking-wide text-brand-400/80">${s}</p>
+ </div>`).join('');
+
+const FAQ = [
+  ['What are your actual opening hours?','Our Union Place flagship runs 6:00 AM to 11:30 PM, seven days a week including public holidays. Late-night jobs are best confirmed by phone before you travel.'],
+  ['How long does a print job take?','Simple copying, binding and passport photos are usually done while you wait. Larger runs and custom design work are quoted with a collection time when you place the order. Peak hours are roughly 10 AM–1 PM and 4–7 PM — send files ahead on WhatsApp to skip the wait.'],
+  ['Can I send artwork before visiting?','Yes. WhatsApp 0777 352 900 or email salakaonline@gmail.com with your files, quantity and deadline. We reply with a price and pickup time, and you pay at collection.'],
+  ['Do you handle bulk and corporate orders?','We do — offices, schools, hotels and event organisers. Bulk orders get scheduled production slots, dedicated handling and monthly invoicing on approved accounts.'],
+  ['Do you offer certified document translation?','Yes, including JP notary signature service for official and immigration paperwork. Bring the original document; turnaround depends on length and language pair.'],
+  ['Which payment methods do you accept?','Cash and all major credit and debit cards at the counter. Corporate accounts can be invoiced monthly.']
+];
+document.getElementById('faqs').innerHTML = FAQ.map(([q,a],i)=>`
+ <details class="group border-b hair py-6" ${i===0?'open':''}>
+   <summary class="flex items-start justify-between gap-6 cursor-pointer list-none">
+     <span class="font-display text-lg lg:text-xl font-semibold text-white tracking-tight">${q}</span>
+     <span class="shrink-0 mt-1 grid place-items-center h-7 w-7 rounded-full border hair text-white/50 group-open:bg-brand-500 group-open:text-white group-open:border-brand-500 transition">
+       <svg class="w-3.5 h-3.5 group-open:rotate-45 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+     </span>
+   </summary>
+   <p class="mt-4 pr-14 text-[15px] leading-relaxed text-white/45">${a}</p>
+ </details>`).join('');
+
+const words = ['Digital Printing','Photocopying','Binding','Lamination','Photo Studio','ID Cards','Lanyards','Stickers','Design &amp; Artwork','Translation','Stationery','Bookshop'];
+const strip = words.map(w=>`<span>${w}</span><span class="text-brand-400">✦</span>`).join('');
+mq.innerHTML = strip; mq2.innerHTML = strip;
+
+document.getElementById('yr').textContent = new Date().getFullYear();
+burger.onclick = () => mobile.classList.toggle('hidden');
+document.querySelectorAll('#mobile a').forEach(a=>a.onclick=()=>mobile.classList.add('hidden'));
+
+addEventListener('scroll',()=>{
+  nav.classList.toggle('bg-ink-950/80',scrollY>40);
+  nav.classList.toggle('backdrop-blur-xl',scrollY>40);
+  nav.classList.toggle('border-b',scrollY>40);
+  nav.classList.toggle('hair',scrollY>40);
+});
+
+const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }),{threshold:.12,rootMargin:'0px 0px -60px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
